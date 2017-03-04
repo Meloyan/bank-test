@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 
+use yii\behaviors\TimestampBehavior;
+
 /**
  * This is the model class for table "category".
  *
@@ -17,6 +19,14 @@ use Yii;
  */
 class Category extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -31,6 +41,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name'], 'required'],
             [['name', 'description'], 'string', 'max' => 255],
         ];
     }
@@ -55,19 +66,4 @@ class Category extends \yii\db\ActiveRecord
         return $this->hasMany(Questions::className(), ['category_id' => 'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSessions()
-    {
-        return $this->hasMany(Sessions::className(), ['category_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSettings()
-    {
-        return $this->hasMany(Settings::className(), ['category_id' => 'id']);
-    }
 }

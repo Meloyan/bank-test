@@ -1,9 +1,7 @@
 <?php
 namespace backend\controllers;
 
-use Codeception\Module\DumbHelper;
 use Yii;
-use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -45,18 +43,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function actions()
-    {
-
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
 
     /**
      * Displays homepage.
@@ -65,7 +51,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('dashboard');
     }
 
     /**
