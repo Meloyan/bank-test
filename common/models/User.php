@@ -30,7 +30,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
 
     const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+    const STATUS_ACTIVE  = 10;
 
     /**
      * @inheritdoc
@@ -129,6 +129,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
+
+
+
+    /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findAdminByUsername($username)
+    {
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE, 'role' => 1]);
+    }
+
 
     /**
      * Finds user by password reset token
