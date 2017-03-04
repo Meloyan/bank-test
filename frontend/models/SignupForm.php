@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use common\models\User;
 
@@ -12,6 +13,8 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $password_confirm;
+    public $sex;
 
 
     /**
@@ -25,6 +28,8 @@ class SignupForm extends Model
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
+            ['sex', 'required'],
+
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
@@ -33,6 +38,8 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            ['password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"],
+
         ];
     }
 
@@ -46,13 +53,24 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->sex = $this->sex;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        
-        return $user->save() ? $user : null;
+
+        if ($user->save(false)) {
+            Yii::$app->mailer->compose('confirmRegister', ['user' => $user, 'password' => $this->password])
+                ->setFrom(Yii::$app->params['adminEmail'])
+                ->setTo($this->email)
+                ->setSubject('Регистрация на bank.dev')
+                ->send();
+
+            return $user;
+        }
+
+        return null;
     }
 }

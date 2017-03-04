@@ -25,8 +25,14 @@ use yii\helpers\Html;
 
 <?php $this->beginBody() ?>
 
+<?= $this->render('//common/head'); ?>
+
 <?= $content ?>
+
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<?= $this->render('//common/footer') ?>
+
 <?php $this->endBody() ?>
 
 </html>

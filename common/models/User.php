@@ -31,6 +31,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const STATUC_ACTIV_CONFIRM = 1;
 
     /**
      * @inheritdoc
@@ -108,7 +109,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'status' => self::STATUC_ACTIV_CONFIRM]);
     }
 
     /**
