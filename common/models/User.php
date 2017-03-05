@@ -30,7 +30,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
 
     const STATUS_DELETED = 0;
-    const STATUS_ACTIVE  = 10;
+    const STATUS_ACTIVE = 10;
+    const STATUC_ACTIV_CONFIRM = 1;
 
     /**
      * @inheritdoc
@@ -108,7 +109,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'activated' => self::STATUC_ACTIV_CONFIRM]);
     }
 
     /**
@@ -127,22 +128,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username, 'activated' => self::STATUC_ACTIV_CONFIRM]);
     }
-
-
-
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findAdminByUsername($username)
-    {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE, 'role' => 1]);
-    }
-
 
     /**
      * Finds user by password reset token
@@ -158,7 +145,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
         return static::findOne([
             'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+            'activated' => self::STATUC_ACTIV_CONFIRM,
         ]);
     }
 
