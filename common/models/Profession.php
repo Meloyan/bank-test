@@ -45,7 +45,7 @@ class Profession extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'profession_setting_id',], 'required'],
+            [['name', 'description', 'profession_setting_id', 'price_for_test', 'type'], 'required'],
             [['created_at', 'updated_at', 'profession_setting_id', 'type'], 'integer'],
             [['price_for_test'], 'number'],
             [['name', 'description'], 'string', 'max' => 255],
@@ -74,7 +74,7 @@ class Profession extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getType0()
+    public function getType_()
     {
         return $this->hasOne(ProfessionType::className(), ['id' => 'type']);
     }

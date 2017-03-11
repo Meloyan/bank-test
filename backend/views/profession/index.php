@@ -1,6 +1,7 @@
 <?php
 
 use common\models\ProfessionSettings;
+use common\models\ProfessionType;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -29,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'description',
+            'price_for_test',
 
             [
                 'attribute' => 'profession_setting_id',
@@ -36,6 +38,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     return   $model->professionSetting->name ? : null;
                 },
                 'filter' => Html::activeDropDownList($searchModel, 'profession_setting_id', ArrayHelper::map(ProfessionSettings::find()->all(), 'id', 'name'), [
+                    'prompt' => '',
+                    'class' => 'form-control'
+                ])
+            ],
+
+            [
+                'attribute' => 'type',
+                'value' => function ($model) {
+                    return   $model->type_->name ? : null;
+                },
+                'filter' => Html::activeDropDownList($searchModel, 'profession_setting_id', ArrayHelper::map(ProfessionType::find()->all(), 'id', 'name'), [
                     'prompt' => '',
                     'class' => 'form-control'
                 ])
