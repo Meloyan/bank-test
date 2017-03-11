@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "profession".
@@ -21,6 +22,15 @@ use Yii;
  */
 class Profession extends \yii\db\ActiveRecord
 {
+
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -35,7 +45,7 @@ class Profession extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'created_at', 'updated_at', 'profession_setting_id', 'price_for_test', 'type'], 'required'],
+            [['name', 'description', 'profession_setting_id',], 'required'],
             [['created_at', 'updated_at', 'profession_setting_id', 'type'], 'integer'],
             [['price_for_test'], 'number'],
             [['name', 'description'], 'string', 'max' => 255],

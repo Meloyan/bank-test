@@ -131,6 +131,18 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return static::findOne(['username' => $username, 'activated' => self::STATUC_ACTIV_CONFIRM]);
     }
 
+
+    /**
+     * Finds user Admin by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findAdminByUsername($username)
+    {
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE, 'role' => 1]);
+    }
+
     /**
      * Finds user by password reset token
      *
