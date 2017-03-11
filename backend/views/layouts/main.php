@@ -31,7 +31,7 @@ AppAsset::register($this);
         'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navdar navbar-default',
+            'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
@@ -56,23 +56,13 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="col-sm-2" style="padding: 0">
-        <?= $this->render('left_navbar'); ?>
-    </div>
-
     <div class="container">
-
-        <div class="col-sm-10">
-
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-            <?= Alert::widget() ?>
-            <?= $content ?>
-
-        </div>
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= Alert::widget() ?>
+        <?= $content ?>
     </div>
-
 </div>
 
 <footer class="footer">
