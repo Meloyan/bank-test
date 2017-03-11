@@ -57,11 +57,11 @@ class QuestionsController extends BaseController
 //        echo "<pre>";
 //        print_r(Yii::$app->request->post()); die;
 
-        if ( $question->load(Yii::$app->request->post()) && $answer->load(Yii::$app->request->post()) && Model::validateMultiple([ $question, $answer ])) {
+        if ( $question->load(Yii::$app->request->post()) && $answer->load(Yii::$app->request->post()) && Model::validateMultiple([ $question ])) {
 
             $question->save(false);
 
-            return $this->redirect(['view', 'id' => $question->id]);
+            return $this->redirect('index');
 
         } else {
 
