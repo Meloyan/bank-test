@@ -2,26 +2,28 @@
 
 namespace backend\controllers;
 
+use common\models\Answers;
 use Yii;
-use common\models\ProfessionSettings;
-use common\models\SearchProfessionSettings;
+use common\models\Questions;
+use common\models\QuestionsSearch;
+use yii\base\Model;
 use yii\web\NotFoundHttpException;
 
 
 /**
- * ProfessionSettingsController implements the CRUD actions for ProfessionSettings model.
+ * QuestionsController implements the CRUD actions for Questions model.
  */
-class ProfessionSettingsController extends BaseController
+class QuestionsController extends BaseController
 {
 
-
     /**
-     * Lists all ProfessionSettings models.
+     * Lists all Questions models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SearchProfessionSettings();
+
+        $searchModel = new QuestionsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -31,7 +33,7 @@ class ProfessionSettingsController extends BaseController
     }
 
     /**
-     * Displays a single ProfessionSettings model.
+     * Displays a single Questions model.
      * @param integer $id
      * @return mixed
      */
@@ -43,25 +45,35 @@ class ProfessionSettingsController extends BaseController
     }
 
     /**
-     * Creates a new ProfessionSettings model.
+     * Creates a new Questions model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ProfessionSettings();
+        $question = new Questions();
+        $answer   = new Answers();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+//        echo "<pre>";
+//        print_r(Yii::$app->request->post()); die;
+
+        if ( $question->load(Yii::$app->request->post()) && $answer->load(Yii::$app->request->post()) && Model::validateMultiple([ $question, $answer ])) {
+
+            $question->save(false);
+
+            return $this->redirect(['view', 'id' => $question->id]);
+
         } else {
+
             return $this->render('create', [
-                'model' => $model,
+                'question' => $question,
+                'answer' => $answer,
             ]);
         }
     }
 
     /**
-     * Updates an existing ProfessionSettings model.
+     * Updates an existing Questions model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -80,7 +92,7 @@ class ProfessionSettingsController extends BaseController
     }
 
     /**
-     * Deletes an existing ProfessionSettings model.
+     * Deletes an existing Questions model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -93,15 +105,15 @@ class ProfessionSettingsController extends BaseController
     }
 
     /**
-     * Finds the ProfessionSettings model based on its primary key value.
+     * Finds the Questions model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ProfessionSettings the loaded model
+     * @return Questions the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ProfessionSettings::findOne($id)) !== null) {
+        if (($model = Questions::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

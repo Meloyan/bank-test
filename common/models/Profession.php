@@ -4,9 +4,6 @@ namespace common\models;
 
 use Yii;
 
-use yii\behaviors\TimestampBehavior;
-use yii\db\Expression;
-
 /**
  * This is the model class for table "profession".
  *
@@ -16,28 +13,14 @@ use yii\db\Expression;
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $profession_setting_id
+ * @property double $price_for_test
+ * @property integer $type
  *
+ * @property ProfessionType $type0
  * @property ProfessionSettings $professionSetting
  */
 class Profession extends \yii\db\ActiveRecord
 {
-
-    public function behaviors()
-    {
-//        return [
-//            [
-//                'class' => TimestampBehavior::className(),
-//                'createdAtAttribute' => 'created_at',
-//                'updatedAtAttribute' => 'updated_at',
-//                'value' => new Expression('NOW()'),
-//            ],
-//        ];
-
-        return [
-            TimestampBehavior::className(),
-        ];
-    }
-
     /**
      * @inheritdoc
      */
@@ -52,9 +35,11 @@ class Profession extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'profession_setting_id'], 'required'],
-            [['created_at', 'updated_at', 'profession_setting_id'], 'integer'],
+            [['name', 'description', 'created_at', 'updated_at', 'profession_setting_id', 'price_for_test', 'type'], 'required'],
+            [['created_at', 'updated_at', 'profession_setting_id', 'type'], 'integer'],
+            [['price_for_test'], 'number'],
             [['name', 'description'], 'string', 'max' => 255],
+            [['type'], 'exist', 'skipOnError' => true, 'targetClass' => ProfessionType::className(), 'targetAttribute' => ['type' => 'id']],
             [['profession_setting_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProfessionSettings::className(), 'targetAttribute' => ['profession_setting_id' => 'id']],
         ];
     }
@@ -65,13 +50,23 @@ class Profession extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'profession_setting_id' => 'Profession Setting',
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'description' => Yii::t('app', 'Description'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'profession_setting_id' => Yii::t('app', 'Profession Setting ID'),
+            'price_for_test' => Yii::t('app', 'Price For Test'),
+            'type' => Yii::t('app', 'Type'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getType0()
+    {
+        return $this->hasOne(ProfessionType::className(), ['id' => 'type']);
     }
 
     /**

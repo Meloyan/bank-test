@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "questions".
@@ -20,6 +21,21 @@ use Yii;
  */
 class Questions extends \yii\db\ActiveRecord
 {
+
+    public static $default = [
+
+        0 => 'Нет',
+        1 => 'Да'
+
+    ];
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -34,9 +50,8 @@ class Questions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id'], 'required'],
-            [['category_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['category_id', 'body'], 'required'],
+            [['category_id', 'created_at', 'updated_at'], 'integer'],
             [['title', 'body'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -54,6 +69,7 @@ class Questions extends \yii\db\ActiveRecord
             'body' => 'Body',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'fl_default' => 'Default'
         ];
     }
 

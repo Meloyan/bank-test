@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'profession_setting_id',
                 'value' => function ($model) {
-                    return   $model->professionSetting->name;
+                    return   $model->professionSetting->name ? : null;
                 },
                 'filter' => Html::activeDropDownList($searchModel, 'profession_setting_id', ArrayHelper::map(ProfessionSettings::find()->all(), 'id', 'name'), [
                     'prompt' => '',

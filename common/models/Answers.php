@@ -19,6 +19,14 @@ use Yii;
  */
 class Answers extends \yii\db\ActiveRecord
 {
+
+    public static $TRUE_FALSE = [
+
+        0 => 'Нет',
+        1 => 'Да'
+
+    ];
+
     /**
      * @inheritdoc
      */
@@ -49,7 +57,7 @@ class Answers extends \yii\db\ActiveRecord
             'id' => 'ID',
             'question_id' => 'Question ID',
             'body' => 'Body',
-            'fl_true' => 'Fl True',
+            'fl_true' => 'True',
             'created_at' => 'Created At',
             'update_at' => 'Update At',
         ];
