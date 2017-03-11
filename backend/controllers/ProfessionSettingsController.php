@@ -52,7 +52,7 @@ class ProfessionSettingsController extends BaseController
         $model = new ProfessionSettings();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('index');
         } else {
             return $this->render('create', [
                 'model' => $model,
