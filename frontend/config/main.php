@@ -10,8 +10,13 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'defaultRoute' => 'main/index',
     'controllerNamespace' => 'frontend\controllers',
+    'defaultRoute' => 'main/index',
+    'modules' => [
+        'test' => [
+            'class' => 'frontend\modules\test\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
