@@ -53,6 +53,7 @@ class MainAsset extends AssetBundle
         'public/assets/js/jquery.flexslider-min.js',
 //        'public/assets/js/jquery.gmaps.js',
         'public/assets/js/main.js',
+        'public/assets/js/search.js',
 //        'js/bootstrap.js'
     ];
     public $depends = [

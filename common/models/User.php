@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\web\IdentityInterface;
 
 /**
@@ -41,15 +42,27 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return 'user';
     }
 
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'balance', 'age', 'sex'], 'required'],
+            [['username', 'auth_key', 'password_hash', 'email', 'sex'], 'required'],
             [['status', 'created_at', 'updated_at', 'age', 'sex'], 'integer'],
             [['balance'], 'number'],
+            [['balance'], 'default', 'value' => 0],
             [['username', 'password_hash', 'password_reset_token', 'email', 'profile_img'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],

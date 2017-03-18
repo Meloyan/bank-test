@@ -7,6 +7,9 @@ namespace frontend\modules\test;
  */
 class Module extends \yii\base\Module
 {
+
+    public $layout = '/site';
+
     /**
      * @inheritdoc
      */

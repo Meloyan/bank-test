@@ -39,7 +39,7 @@ class SearchProfession extends Profession
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $type = null)
     {
         $query = Profession::find();
 
@@ -62,7 +62,11 @@ class SearchProfession extends Profession
             'id' => $this->id,
             'profession_setting_id' => $this->profession_setting_id,
         ]);
-
+        if ($type) {
+            $query->andFilterWhere([
+                'type' => $type,
+            ]);
+        }
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description]);
 

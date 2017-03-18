@@ -34,9 +34,14 @@ use yii\bootstrap\Nav;
             ];
             if (!Yii::$app->user->isGuest) {
                 $menuItems[] = [
+                    'label' => 'Личный кабинет',
+                    'url' => Url::to(['/test/default/index']),
+                ];
+                $menuItems[] = [
                     'label' => 'Выйти (' . Yii::$app->user->identity->username . ')',
                     'url' => Url::to(['/main/logout']),
-                    'linkOptions' => ['data-method' => 'post']
+                    'linkOptions' => ['data-method' => 'post'],
+
                 ];
             } else {
                 $menuItems[] = [// первый уровень
@@ -44,7 +49,6 @@ use yii\bootstrap\Nav;
                     'url' => Url::to(['/main/login']),
                 ];
             }
-
 
             echo Nav::widget([
                 'items' => $menuItems,
