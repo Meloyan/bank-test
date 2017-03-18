@@ -1,6 +1,5 @@
 <?php
 
-use common\models\Answers;
 use common\models\Category;
 use common\models\Questions;
 use unclead\multipleinput\MultipleInput;
@@ -25,68 +24,38 @@ use yii\widgets\ActiveForm;
 
     <div class="col-sm-4">
 
-        <?= $form->field($question, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->all(), 'id', 'name')) ?>
+        <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->all(), 'id', 'name')) ?>
 
-        <?= $form->field($question, 'title')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($question, 'body')->textarea(['rows' => 3]) ?>
+        <?= $form->field($model, 'body')->textarea(['rows' => 3]) ?>
 
-        <?= $form->field($question, 'fl_default')->dropDownList(Questions::$default) ?>
+        <?= $form->field($model, 'fl_default')->dropDownList(Questions::$default) ?>
 
         <div class="form-group">
-            <?= Html::submitButton($question->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $question->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
 
 
     </div>
 
     <div class="col-sm-6">
+        
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>answer</th>
-                </tr>
-            </thead>
-            <tr>
-                <td>
-                    <?= $form->field($answer, 'fl_true[]', [])->radio()->label(false) ?>
-                </td>
-                <td>
-                    <?= $form->field($answer, 'body[]')->textarea(['rows' => 3])->label(false) ?>
-                </td>
-            </tr>
+        <?php if($model->answers): ?>
 
-            <tr>
-                <td>
-                    <?= $form->field($answer, 'fl_true[]', [])->radio()->label(false) ?>
-                </td>
-                <td>
-                    <?= $form->field($answer, 'body[]')->textarea(['rows' => 3])->label(false) ?>
-                </td>
-            </tr>
+            <?= $this->render('_answers', [
 
-            <tr>
-                <td>
-                    <?= $form->field($answer, 'fl_true[]', [])->radio()->label(false) ?>
-                </td>
-                <td>
-                    <?= $form->field($answer, 'body[]')->textarea(['rows' => 3])->label(false) ?>
-                </td>
-            </tr>
+                'answers' => $model->answers
 
-            <tr>
-                <td>
-                    <?= $form->field($answer, 'fl_true[]', [])->radio()->label(false) ?>
-                </td>
-                <td>
-                    <?= $form->field($answer, 'body[]')->textarea(['rows' => 3])->label(false) ?>
-                </td>
-            </tr>
+            ])?>
 
-        </table>
+        <?php else: ?>
 
+            <?= $this->render('_no_answers') ?>
+
+        <?php endif; ?>
+        
     </div>
 
 

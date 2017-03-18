@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return   $model->type_->name ? : null;
                 },
-                'filter' => Html::activeDropDownList($searchModel, 'profession_setting_id', ArrayHelper::map(ProfessionType::find()->all(), 'id', 'name'), [
+                'filter' => Html::activeDropDownList($searchModel, 'type', ArrayHelper::map(ProfessionType::find()->all(), 'id', 'name'), [
                     'prompt' => '',
                     'class' => 'form-control'
                 ])

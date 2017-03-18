@@ -53,6 +53,7 @@ class Questions extends \yii\db\ActiveRecord
             [['category_id', 'body'], 'required'],
             [['category_id', 'created_at', 'updated_at'], 'integer'],
             [['title', 'body'], 'string', 'max' => 255],
+            ['fl_default' , 'boolean'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -64,7 +65,7 @@ class Questions extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category ID',
+            'category_id' => 'Category',
             'title' => 'Title',
             'body' => 'Body',
             'created_at' => 'Created At',

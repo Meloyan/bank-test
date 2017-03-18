@@ -51,23 +51,32 @@ class QuestionsController extends BaseController
      */
     public function actionCreate()
     {
-        $question = new Questions();
-        $answer   = new Answers();
+        $model = new Questions();
 
-//        echo "<pre>";
-//        print_r(Yii::$app->request->post()); die;
+        $Amswers = Yii::$app->request->post('Answers');
 
-        if ( $question->load(Yii::$app->request->post()) && $answer->load(Yii::$app->request->post()) && Model::validateMultiple([ $question ])) {
+        if ( $model->load(Yii::$app->request->post() ) && $model->save()) {
 
-            $question->save(false);
+
+            foreach($Amswers['fl_true'] as $key => $value){
+
+                $answerModel = new Answers();
+
+                $answerModel->question_id = $model->id;
+                $answerModel->body = $Amswers['body'][$key];
+                $answerModel->fl_true = $value;
+                $answerModel->save();
+
+            }
 
             return $this->redirect('index');
 
         } else {
 
             return $this->render('create', [
-                'question' => $question,
-                'answer' => $answer,
+
+                'model' => $model
+
             ]);
         }
     }
@@ -82,8 +91,20 @@ class QuestionsController extends BaseController
     {
         $model = $this->findModel($id);
 
+        $Amswers = Yii::$app->request->post('Answers');
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+            foreach($Amswers['id'] as $key => $value){
+
+                $answerModel =  Answers::findOne($value);
+                $answerModel->body = $Amswers['body'][$key];
+                $answerModel->save();
+
+            }
+
+            return $this->redirect('index');
+
         } else {
             return $this->render('update', [
                 'model' => $model,

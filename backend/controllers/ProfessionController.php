@@ -2,9 +2,10 @@
 
 namespace backend\controllers;
 
+use PDOException;
 use Yii;
 use common\models\Profession;
-use common\models\SearchProfession;
+use backend\models\SearchProfession;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -84,7 +85,16 @@ class ProfessionController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        try{
+
+            $this->findModel($id)->delete();
+
+        }catch (\Exception $ex){
+
+            echo $ex->getMessage(); die;
+
+        }
+
 
         return $this->redirect(['index']);
     }
