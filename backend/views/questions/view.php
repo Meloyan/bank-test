@@ -1,5 +1,6 @@
 <?php
 
+use common\models\Questions;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -29,12 +30,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'category_id',
+
+            [
+                'label' => 'category',
+                'value' => function ($model) {
+                    return $model->category->name;
+                },
+            ],
+
             'title',
             'body',
-            'created_at',
-            'updated_at',
-            'fl_default',
+            'created_at:datetime',
+            'updated_at:datetime',
+            [
+                'label' => 'default',
+                'value' => function ($model) {
+                    return Questions::$default[$model->fl_default];
+                },
+            ],
         ],
     ]) ?>
 

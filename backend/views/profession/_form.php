@@ -13,22 +13,27 @@ use yii\widgets\ActiveForm;
 
 <div class="profession-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <div class="col-sm-6">
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+        <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'price_for_test')->textInput() ?>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'profession_setting_id')->dropDownList( ArrayHelper::map(ProfessionSettings::find()->all(), 'id', 'name') ) ?>
+        <?= $form->field($model, 'description')->textarea(['row' => 3]) ?>
 
-    <?= $form->field($model, 'type')->dropDownList( ArrayHelper::map(ProfessionType::find()->all(), 'id', 'name') ) ?>
+        <?= $form->field($model, 'price_for_test')->textInput() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= $form->field($model, 'profession_setting_id')->dropDownList(ArrayHelper::map(ProfessionSettings::find()->all(), 'id', 'name')) ?>
+
+        <?= $form->field($model, 'type')->dropDownList(ArrayHelper::map(ProfessionType::find()->all(), 'id', 'name')) ?>
+
+        <div class="form-group">
+            <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
     </div>
-
-    <?php ActiveForm::end(); ?>
 
 </div>

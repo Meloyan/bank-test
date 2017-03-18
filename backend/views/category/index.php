@@ -13,6 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="category-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+
+    <div class="alert alert-info"><?= Html::encode('harceri kategoria') ?></div>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
