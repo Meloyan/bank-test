@@ -6,6 +6,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\RuleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -24,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create Rule'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+    <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -35,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'profession_id',
                 'value' => function ($model) {
-                    return   $model->profession->name;
+                    return $model->profession->name;
                 },
                 'filter' => Html::activeDropDownList($searchModel, 'profession_id', ArrayHelper::map(Profession::find()->all(), 'id', 'name'), [
                     'prompt' => '',
@@ -46,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'category_id',
                 'value' => function ($model) {
-                    return   $model->category->name;
+                    return $model->category->name;
                 },
                 'filter' => Html::activeDropDownList($searchModel, 'category_id', ArrayHelper::map(Category::find()->all(), 'id', 'name'), [
                     'prompt' => '',
@@ -59,7 +60,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at:datetime',
             'updated_at:datetime',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+//                'template' => '{view} {delete}',
+//                'buttons' => [
+//                    'delete' => function ($url, $model) {
+//                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url,
+//                            ['data-confirm' => 'Are you sure you want to delete this item?', 'data-method' => 'POST']);
+//                    }
+//                ],
+
+            ],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+    <?php Pjax::end(); ?></div>
