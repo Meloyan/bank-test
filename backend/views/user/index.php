@@ -33,10 +33,32 @@ $this->params['breadcrumbs'][] = $this->title;
 //             'status',
              'balance',
              'age',
-             'sex',
+
+            [
+                'attribute' => 'sex',
+                'format' => 'image',
+                'value' => function ($model) {
+                    return  $model->activated ? '/images/male2.png' : '/images/female1.png';
+                },
+                'filter' => Html::activeDropDownList($searchModel, 'sex', [0 => 'Female', 1 => 'male'], [
+                    'prompt' => '',
+                    'class' => 'form-control'
+                ])
+            ],
+
             // 'profile_img',
 //             'role',
-             'activated',
+
+            [
+                'attribute' => 'activated',
+                'value' => function ($model) {
+                    return   $model->activated ? 'Да' : 'Нет';
+                },
+                'filter' => Html::activeDropDownList($searchModel, 'activated', [0 => 'Нет', 1 => 'Да'], [
+                    'prompt' => '',
+                    'class' => 'form-control'
+                ])
+            ],
 
             'created_at:datetime',
             'updated_at:datetime',
