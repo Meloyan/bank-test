@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "user_balance_away".
@@ -19,6 +20,14 @@ use Yii;
  */
 class UserBalanceAway extends \yii\db\ActiveRecord
 {
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -33,9 +42,9 @@ class UserBalanceAway extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'amount', 'timestamp', 'balance_before', 'balance_after'], 'required'],
+            [['user_id', 'amount'], 'required'],
             [['user_id', 'type'], 'integer'],
-            [['amount', 'balance_before', 'balance_after'], 'number'],
+            [['amount'], 'number'],
             [['timestamp'], 'safe'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];

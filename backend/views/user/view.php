@@ -39,10 +39,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at:datetime',
             'balance',
             'age',
-            'sex',
+
+            [
+                'label' => 'Пол',
+                'attribute'=>'sex',
+                'value'=> $model->sex ? '/images/male2.png' : '/images/female1.png',
+                'format' => ['image'],
+            ],
+
             'profile_img',
             'role',
-            'activated',
+
+            [
+                'label' => 'activated',
+                'value' => function ($model) {
+                    return  $model->activated ? 'Да' : 'Нет';
+                },
+            ],
         ],
     ]) ?>
 
