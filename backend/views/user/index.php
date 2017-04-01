@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'sex',
                 'format' => 'image',
                 'value' => function ($model) {
-                    return  $model->activated ? '/images/male2.png' : '/images/female1.png';
+                    return  $model->sex ? '/images/male2.png' : '/images/female1.png';
                 },
                 'filter' => Html::activeDropDownList($searchModel, 'sex', [0 => 'Female', 1 => 'male'], [
                     'prompt' => '',
