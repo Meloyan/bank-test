@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "sessions".
@@ -18,8 +19,10 @@ use Yii;
  * @property User $user
  * @property Category $category
  */
-class Sessions extends \yii\db\ActiveRecord
+class Sessions extends ActiveRecord
 {
+
+
     /**
      * @inheritdoc
      */
@@ -77,5 +80,15 @@ class Sessions extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
+
+    /**
+     * @param $professionId
+     */
+    public function createNewSession($professionId)
+    {
+        $this->user_id = Yii::$app->user->id;
+        $this->profession_id = $professionId;
+        $this->save(false);
     }
 }
