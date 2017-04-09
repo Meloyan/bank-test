@@ -23,7 +23,6 @@ use yii\behaviors\TimestampBehavior;
 class Profession extends \yii\db\ActiveRecord
 {
 
-
     public function behaviors()
     {
         return [
@@ -86,4 +85,33 @@ class Profession extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ProfessionSettings::className(), ['id' => 'profession_setting_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRules()
+    {
+        return $this->hasMany(Rule::className(), ['profession_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSessions()
+    {
+        return $this->hasMany(Sessions::className(), ['profession_id' => 'id']);
+    }
+
+
+    public function getQuestions()
+    {
+        foreach ($this->rules as $rule) {
+
+            $questions = Questions::getRandomQuestionsByCategory($rule->category_id, $rule->count);
+        }
+
+        return $questions;
+    }
+
+
 }

@@ -13,6 +13,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Questions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="questions-index">
 
     <h1><?= Html::encode($this->title) ?></h1>

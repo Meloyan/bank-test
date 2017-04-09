@@ -2,8 +2,8 @@
 
 namespace common\models;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "questions".
@@ -53,7 +53,7 @@ class Questions extends \yii\db\ActiveRecord
             [['category_id', 'body'], 'required'],
             [['category_id', 'created_at', 'updated_at'], 'integer'],
             [['title', 'body'], 'string', 'max' => 255],
-            ['fl_default' , 'boolean'],
+            ['fl_default', 'boolean'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
     }
@@ -93,8 +93,19 @@ class Questions extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQusetionAnswers()
+    public function getQuestionAnswers()
     {
         return $this->hasMany(QusetionAnswer::className(), ['question_id' => 'id']);
     }
+
+    /**
+     * @param $category_id
+     * @param $limit
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public  static function getRandomQuestionsByCategory($category_id, $limit)
+    {
+       return  self::find()->where(['category_id' => $category_id])->orderBy(new Expression('rand()'))->limit($limit)->All();
+    }
+
 }

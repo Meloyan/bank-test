@@ -75,4 +75,16 @@ class QusetionAnswer extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Sessions::className(), ['id' => 'session_id']);
     }
+
+
+    /**
+     * @param $sessionId
+     * @param $questionId
+     */
+    public function saveQuestionAnswer($sessionId, $questionId)
+    {
+        $this->session_id = $sessionId;
+        $this->question_id = $questionId;
+        $this->save(false);
+    }
 }

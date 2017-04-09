@@ -53,17 +53,17 @@ class QuestionsController extends BaseController
     {
         $model = new Questions();
 
-        $Amswers = Yii::$app->request->post('Answers');
+        $Answers = Yii::$app->request->post('Answers');
 
         if ( $model->load(Yii::$app->request->post() ) && $model->save()) {
 
 
-            foreach($Amswers['fl_true'] as $key => $value){
+            foreach($Answers['fl_true'] as $key => $value){
 
                 $answerModel = new Answers();
 
                 $answerModel->question_id = $model->id;
-                $answerModel->body = $Amswers['body'][$key];
+                $answerModel->body = $Answers['body'][$key];
                 $answerModel->fl_true = $value;
                 $answerModel->save();
 
@@ -91,14 +91,14 @@ class QuestionsController extends BaseController
     {
         $model = $this->findModel($id);
 
-        $Amswers = Yii::$app->request->post('Answers');
+        $Answers = Yii::$app->request->post('Answers');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-            foreach($Amswers['id'] as $key => $value){
+            foreach($Answers['id'] as $key => $value){
 
                 $answerModel =  Answers::findOne($value);
-                $answerModel->body = $Amswers['body'][$key];
+                $answerModel->body = $Answers['body'][$key];
                 $answerModel->save();
 
             }

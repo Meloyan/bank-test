@@ -61,7 +61,7 @@ class Sessions extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQusetionAnswers()
+    public function getQuestionAnswers()
     {
         return $this->hasMany(QusetionAnswer::className(), ['session_id' => 'id']);
     }
@@ -77,18 +77,35 @@ class Sessions extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategory()
+    public function getProfession()
     {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+        return $this->hasOne(Profession::className(), ['id' => 'profession_id']);
     }
 
     /**
-     * @param $professionId
+     * @param $profession_id
+     * @return array|null|ActiveRecord
      */
-    public function createNewSession($professionId)
+    public static function checkSessionExist($profession_id)
+    {
+        return
+            self::find()
+                ->where([
+                    'user_id'       => Yii::$app->user->id,
+                    'profession_id' => $profession_id
+                ])
+                ->andWhere(['is', 'finished_at', null])
+                ->one();
+    }
+
+    /**
+     * @param $id
+     */
+    public function newSessions($id)
     {
         $this->user_id = Yii::$app->user->id;
-        $this->profession_id = $professionId;
+        $this->profession_id = $id;
         $this->save(false);
     }
+
 }
