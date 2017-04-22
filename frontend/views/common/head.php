@@ -5,9 +5,6 @@ use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
 
 ?>
-<div id="preloader">
-    <div id="loading-animation">&nbsp;</div>
-</div>
 
 <!-- Navbar
 ================================================== -->
@@ -35,7 +32,7 @@ use yii\bootstrap\Nav;
             if (!Yii::$app->user->isGuest) {
                 $menuItems[] = [
                     'label' => 'Личный кабинет',
-                    'url' => Url::to(['/test/default/index']),
+                    'url' => Url::to(['/cabinet/index']),
                 ];
                 $menuItems[] = [
                     'label' => 'Выйти (' . Yii::$app->user->identity->username . ')',

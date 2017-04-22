@@ -1,9 +1,9 @@
 <?php
 
+use common\models\ProfessionType;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use yii\helpers\Url;
 use yii\widgets\ListView;
-
 ?>
 
 <section>
@@ -12,37 +12,36 @@ use yii\widgets\ListView;
             <div class="row">
                 <div class="btn-group btn-group-justified">
                 <!-- Centered Pills -->
-                <ul class="nav nav-pills nav-justified ">
-                    <li class="<?= Yii::$app->controller->action->id == 'category-one' ? 'active' : '' ?>"><a href="<?= Url::to(['default/category-one']) ?>">Menu 1</a></li>
-                    <li class="<?= Yii::$app->controller->action->id == 'category-two' ? 'active' : '' ?>"><a href="<?= Url::to(['default/category-two']) ?>">Menu 2</a></li>
-                    <li class="<?= Yii::$app->controller->action->id == 'category-three'? 'active' : '' ?>"><a href="<?= Url::to(['default/category-three']) ?>">Menu 3</a></li>
-                </ul>
+                    <section>
+                        <?php $form = ActiveForm::begin(['id' => 'form', 'method' => 'get']); ?>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <?= $form->field($searchModel, 'type')->dropDownList(ArrayHelper::map(ProfessionType::find()->all(), 'id', 'name'), ['class' => 'select form-control filter', 'prompt' => '[Виберите сатегори]'])->label(false) ?>
+                                            </div>
+                                            <div class="col-xs-6 col-md-4">
+                                                <?= $form->field($searchModel, 'name')->textInput(['class' => 'form-control ', 'placeholder' => 'Search...'])->label(false) ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php ActiveForm::end(); ?>
+                    </section>
             </div>
         </div>
     </div>
 </section>
 
-<section>
-    <?php $form = ActiveForm::begin(['id' => 'form', 'method' => 'get']); ?>
-
-    <div class="row">
-        <div class="col-xs-6">
-            <div class="input-group">
-
-                <?= $form->field($searchModel, 'name')->textInput(['class' => 'form-control', 'placeholder' => 'Search...'])->label(false) ?>
-
-            </div>
-        </div>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
-</section>
 <section>
     <div class="row" style="padding: 20px 15px;">
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
-            'itemView' => '_post',
+            'itemView' => '_view',
         ]); ?>
     </div>
 </section>

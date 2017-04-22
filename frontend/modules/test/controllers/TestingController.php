@@ -17,9 +17,7 @@ class TestingController extends Controller
     public function actionIndex($id)
     {
 
-
         if (Yii::$app->session->has('session_id')) {
-
             $session = Sessions::findOne(Yii::$app->session->get('session_id'));
 
         } else {
@@ -27,9 +25,7 @@ class TestingController extends Controller
             $questions = (Profession::findOne($id))->getQuestions();
 
             $session->newSessions($id);
-
             Yii::$app->session->set('session_id', $id);
-
             foreach ($questions as $question) {
                 (new QusetionAnswer())->saveQuestionAnswer($session->id, $question->id);
             }

@@ -44,8 +44,8 @@ class Profession extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'profession_setting_id', 'price_for_test', 'type'], 'required'],
-            [['created_at', 'updated_at', 'profession_setting_id', 'type'], 'integer'],
+            [['name', 'description', 'profession_setting_id', 'price_for_test'], 'required'],
+            [['created_at', 'updated_at', 'profession_setting_id'], 'integer'],
             [['price_for_test'], 'number'],
             [['name', 'description'], 'string', 'max' => 255],
             [['type'], 'exist', 'skipOnError' => true, 'targetClass' => ProfessionType::className(), 'targetAttribute' => ['type' => 'id']],
@@ -103,6 +103,9 @@ class Profession extends \yii\db\ActiveRecord
     }
 
 
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
     public function getQuestions()
     {
         foreach ($this->rules as $rule) {

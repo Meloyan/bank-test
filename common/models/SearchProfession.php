@@ -2,16 +2,15 @@
 
 namespace common\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Profession;
 
 /**
  * SearchProfession represents the model behind the search form about `common\models\Profession`.
  */
 class SearchProfession extends Profession
 {
+
     /**
      * @inheritdoc
      */
@@ -19,7 +18,7 @@ class SearchProfession extends Profession
     {
         return [
             [['id', 'profession_setting_id'], 'integer'],
-            [['name', 'description'], 'safe'],
+            [['name', 'description', 'type'], 'safe'],
         ];
     }
 
@@ -39,11 +38,9 @@ class SearchProfession extends Profession
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $type = null)
+    public function search($params)
     {
         $query = Profession::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -52,8 +49,6 @@ class SearchProfession extends Profession
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
@@ -62,13 +57,15 @@ class SearchProfession extends Profession
             'id' => $this->id,
             'profession_setting_id' => $this->profession_setting_id,
         ]);
-        if ($type) {
+        if ($this->type) {
             $query->andFilterWhere([
-                'type' => $type,
+                'type' => $this->type,
             ]);
         }
+        if($this->name){
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description]);
+        }
 
         return $dataProvider;
     }
