@@ -42,7 +42,7 @@ class UserBalanceAway extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'amount'], 'required'],
+//            [['user_id', 'amount'], 'required'],
             [['user_id', 'type'], 'integer'],
             [['amount'], 'number'],
             [['timestamp'], 'safe'],
@@ -72,5 +72,16 @@ class UserBalanceAway extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @param $amount
+     *
+     */
+    public  function BalanceAway($amount)
+    {
+        $this->user_id = Yii::$app->user->id;
+        $this->amount = $amount;
+        $this->save();
     }
 }

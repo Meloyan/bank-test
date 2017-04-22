@@ -17,6 +17,9 @@ var category = (function () {
         $('.filter').change(function () {
             $('#form').submit();
         });
+        $(document).on('click', '.inactive', function () {
+           return false;
+        });
     }
 
     /**

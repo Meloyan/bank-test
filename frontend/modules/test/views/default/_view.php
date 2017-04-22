@@ -4,14 +4,14 @@ use yii\helpers\Url;
 
 ?>
 <div class="col-md-2">
-    <div class="panel" style="border: 1px solid #D6D6D6">
-        <div class="panel-body">
-            <a href="<?= Url::to(['testing/index/', 'id'=>$model->id]); ?>" class="icon-box icon-box-vertical">
-                <div class="desc-container">
-                    <h6><?= $model->name?></h6>
-                    <p>стоимость теста:<?= $model->price_for_test?>РУБ</p>
+    <a href="<?= Url::to(['testing/index/', 'id' => $model->id]); ?>" class="icon-box icon-box-vertical a">
+        <div class="panel <?= Yii::$app->user->identity->balance >= $model->price_for_test ? '' : ' inactive' ?>" style="border: 1px solid #D6D6D6">
+            <div class="panel-body">
+                <div class="desc-container ">
+                    <strong><?= $model->name ?></strong>
+                    <p>стоимость теста:<?= $model->price_for_test ?>РУБ</p>
                 </div>
-            </a>
+            </div>
         </div>
-    </div>
+    </a>
 </div>

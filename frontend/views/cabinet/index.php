@@ -6,12 +6,11 @@ use yii\helpers\Url;
 
 <?= $this->render('//common/loginHead'); ?>
 
-
 <div class="row" style="padding: 20px 15px;">
     <div class="col-md-4">
         <div class="panel" style="border: 1px solid #D6D6D6">
             <div class="panel-body">
-                <a href="<?=Url::to(['test/default/index']) ?>" class="icon-box icon-box-vertical">
+                <a href="<?=Url::to(Yii::$app->session->has('session_id')? ['test/testing/index'] : ['test/default/index']) ?>" class="icon-box icon-box-vertical">
                     <div class="icon-container">
                         <span class="glyphicon glyphicon-pencil"  style="font-size: 75px "></span>
                     </div>

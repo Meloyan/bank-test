@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Url;
-use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
 
 ?>

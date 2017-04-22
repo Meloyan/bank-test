@@ -13,7 +13,11 @@ body {
 .wrap > .container {
     padding: 70px 15px 20px;
 }
-
+.inactive{
+    cursor: default;
+    background-color: #F3F3F3;
+    color: #1f2021;
+}
 .footer {
     height: 60px;
     background-color: #f5f5f5;
