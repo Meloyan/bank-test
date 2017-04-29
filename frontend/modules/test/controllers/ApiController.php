@@ -13,6 +13,7 @@ class ApiController extends Controller
      */
     public function actionCreate()
     {
+        
         $data = Yii::$app->request->post('data');
         $sessionId = Yii::$app->session->get('session_id');
 
