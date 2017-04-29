@@ -27,7 +27,7 @@ class TestingController extends Controller
 
             (new UserBalanceAway())->BalanceAway(Profession::findOne($id)->price_for_test);
             $session->newSessions($id);
-            Yii::$app->session->set('session_id', $id);
+            Yii::$app->session->set('session_id', $session->id);
             foreach ($questions as $question) {
                 (new QusetionAnswer())->saveQuestionAnswer($session->id, $question->id);
             }

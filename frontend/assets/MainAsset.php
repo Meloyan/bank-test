@@ -13,11 +13,13 @@ class MainAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'public/assets/css/style.css',
+        'public/assets/css/leftmenu.css',
            ];
     public $js = [
         'public/assets/js/category.js',
         'public/assets/js/app.js',
         'public/assets/js/forms.js',
+        'public/assets/js/testing.js',
 
     ];
     public $depends = [

@@ -87,4 +87,12 @@ class QusetionAnswer extends \yii\db\ActiveRecord
         $this->question_id = $questionId;
         $this->save(false);
     }
+
+    public function updateAnswer($questionId, $answer,$sessionId)
+    {
+        $model = QusetionAnswer::findOne(['session_id' => $sessionId, 'question_id' => $questionId]);
+
+        $model->answer_id = $answer;
+        $model->save(false);
+    }
 }
