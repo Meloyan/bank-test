@@ -10,7 +10,11 @@
             </div>
         </div>
 </section>
+<?php
+//echo '<pre>';
+//print_r($session->questionAnswers);die;
 
+?>
 <div class="container">
     <div class="row" style="padding-bottom: 45px;">
         <div class="col-xs-12 bhoechie-tab-container">
@@ -18,17 +22,31 @@
                 <div class="list-group">
                     <?php $i = 1; ?>
                     <?php foreach ($session->questionAnswers as $questionAnswer) : ?>
-                        <a href="#" class="list-group-item <?= $i == 1 ? 'active' : '' ?>  text-center  list-group-item-<?=$questionAnswer->question->id?>">
-                            <!--                        <span class="glyphicon glyphicon-ok"></span>-->
-                            patasxanvac che
-                        </a>
+
+                    <?php if($questionAnswer->answer_id): ?>
+
+                                <a href="#" class="list-group-item   text-center  list-group-item-<?=$questionAnswer->question->id?> <?= $i == 1 ? ' has-answered-active' : ' has-answered' ?>" data-has-answerd = '1'>
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    patasxanvac e
+                                </a>
+
+                            <?php else: ?>
+
+                            <a href="#" class="list-group-item <?= $i == 1 ? 'active' : '' ?>  text-center  list-group-item-<?=$questionAnswer->question->id?>">
+                                patasxanvac che
+                            </a>
+
+                            <?php endif;?>
+
                         <?php $i++; ?>
+
                     <?php endforeach; ?>
                 </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
                 <!-- flight section -->
                 <?php $j = 1 ?>
+
                 <?php foreach ($session->questionAnswers as $item) : ?>
 
                     <div class="bhoechie-tab-content <?= $j == 1 ? 'active' : '' ?> ">
@@ -39,7 +57,7 @@
                             <div class="row answer-main-div">
 
                                 <div class="col-sm-2">
-                                    <input name="<?= $item->question->id ?>" type="radio" data-id="<?= $answer->id ?>" class="answer-radio">
+                                    <input name="<?= $item->question->id ?>" type="radio" data-id="<?= $answer->id ?>" class="answer-radio" <?= $item->answer_id == $answer->id ? 'checked' : ''?> >
                                 </div>
                                 <div class="col-sm-10 ">
                                     <?= $answer->body ?>

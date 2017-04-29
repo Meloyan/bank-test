@@ -16,8 +16,12 @@ var testing = (function () {
     function bind() {
         $("div.bhoechie-tab-menu>div.list-group>a").click(function (e) {
             menuTab(e, $(this));
+            if(parents){
             parents.addClass('has-answered').html('<span class="glyphicon glyphicon-ok"></span>patasxanac e');
+            }
+            $(this).siblings('a[data-has-answerd = "1"]').addClass("has-answered").find('span').addClass('glyphicon glyphicon-ok');
             hasAttr($(this));
+
         });
         $(document).on('click', '.answer-radio', function () {
             sendAnswer($(this).attr('name'), $(this).attr('data-id'));
@@ -74,9 +78,9 @@ var testing = (function () {
         element.addClass("active");
 
         tab.removeClass("active");
+
         tab.eq(index).addClass("active");
     }
-
 
     //
     $(document).ready(function () {
