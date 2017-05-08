@@ -71,10 +71,14 @@ div.bhoechie-tab-menu div.list-group>a.active .fa{
     /*background-color: #5A55A3;*/
     /*color: #ffffff;*/
 
-    background-color: #babbc1;
-    border-color: #babbc1;
-    color: black;
+    /*background-color: #babbc1;*/
+    /*border-color: #babbc1;*/
+    /*color: black;*/
 
+
+    background-color: #d9edf7;
+    border-color: #d9edf7;
+    color: #31708f;
 }
 
 
@@ -92,7 +96,9 @@ div.bhoechie-tab-menu div.list-group>a.active:after, div.bhoechie-tab-menu div.l
 }
 
 div.bhoechie-tab-menu div.list-group>a.active:after{
-    border-left: 10px solid #babbc1;
+    /*border-left: 10px solid #babbc1;*/
+    border-left: 10px solid #d9edf7;;
+
 }
 
 div.bhoechie-tab-menu div.list-group>a.has-answered-active:after{

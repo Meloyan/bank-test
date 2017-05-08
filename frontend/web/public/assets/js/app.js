@@ -14,18 +14,15 @@ var app = {
      * @param _return
      * @returns {*}
      */
-    post: function (url, data, _return) {
-        $.ajax({
+    post: function (url, data, success) {
+        success = success || {};
+        var defaults = {
             method: 'post',
             url: url,
-            data: data,
-            success: function (data) {
-                response = data;
-            }
-        });
+            data: data
+        };
 
-        if (_return) {
-            return response;
-        }
+        var params = $.extend(defaults, success);
+        $.ajax(params);
     }
 };

@@ -1,42 +1,80 @@
-<section>
-    <div id="head-page-section" class="l-grey-bg">
-        <div class="container">
-            <div class="row">
-                <div class="btn-group btn-group-justified">
-                    <!-- Centered Pills -->
-                    <ul class="nav nav-pills nav-justified ">
-                    </ul>
-                </div>
-            </div>
-        </div>
-</section>
-<?php
-//echo '<pre>';
-//print_r($session->questionAnswers);die;
+<!--<section>-->
+<!--    <div id="head-page-section" class="l-grey-bg">-->
+<!--        <div class="container">-->
+<!---->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-4">-->
+<!---->
+<!--                    <div class="panel panel-info">-->
+<!--                        <div class="panel-heading">-->
+<!--                            <h4 class="panel-title">informaciya</h4>-->
+<!--                        </div>-->
+<!--                        <div class="panel-body">-->
+<!--                            <table class="table table-hover">-->
+<!--                                <tr class="">-->
+<!--                                    <td>-->
+<!--                                        <h5 style="margin: 0">Test anun@</h5>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <h5 style="margin: 0">-->
+<!--                                            <span class="label label-default"> --><?//= $session->profession->name ?><!--</span>-->
+<!--                                        </h5>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tbody class="table-body">-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!---->
+<!---->
+<!--                </div>-->
+<!---->
+<!--                <div class="col-sm-8">-->
+<!---->
+<!--                    <div class="wrapper">-->
+<!--                        <div class="cell">-->
+<!--                            <div id="holder">-->
+<!--                                <div class="digits"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!---->
+<!---->
+<!--                </div>-->
+<!---->
+<!--            </div>-->
+<!--        </div>-->
+<!--</section>-->
 
-?>
-<div class="container">
-    <div class="row" style="padding-bottom: 45px;">
-        <div class="col-xs-12 bhoechie-tab-container">
+<section class="main-container">
+
+    <?=$this->render('@frontend/views/layouts/right_information_bar');?>
+    <div class="container ">
+        <div class="row fixed-top">
+        <div class="col-xs-12 bhoechie-tab-container" >
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
                 <div class="list-group">
                     <?php $i = 1; ?>
                     <?php foreach ($session->questionAnswers as $questionAnswer) : ?>
 
-                    <?php if($questionAnswer->answer_id): ?>
+                        <?php if ($questionAnswer->answer_id): ?>
 
-                                <a href="#" class="list-group-item   text-center  list-group-item-<?=$questionAnswer->question->id?> <?= $i == 1 ? ' has-answered-active' : ' has-answered' ?>" data-has-answerd = '1'>
-                                    <span class="glyphicon glyphicon-ok"></span>
-                                    patasxanvac e
-                                </a>
+                            <a href="#"
+                               class="list-group-item   text-center  list-group-item-<?= $questionAnswer->question->id ?> <?= $i == 1 ? ' has-answered-active' : ' has-answered' ?>"
+                               data-has-answerd='1'>
+                                <span class="glyphicon glyphicon-ok"></span>
+                                patasxanvac e
+                            </a>
 
-                            <?php else: ?>
+                        <?php else: ?>
 
-                            <a href="#" class="list-group-item <?= $i == 1 ? 'active' : '' ?>  text-center  list-group-item-<?=$questionAnswer->question->id?>">
+                            <a href="#"
+                               class="list-group-item <?= $i == 1 ? 'active' : '' ?>  text-center  list-group-item-<?= $questionAnswer->question->id ?>">
                                 patasxanvac che
                             </a>
 
-                            <?php endif;?>
+                        <?php endif; ?>
 
                         <?php $i++; ?>
 
@@ -57,7 +95,8 @@
                             <div class="row answer-main-div">
 
                                 <div class="col-sm-2">
-                                    <input name="<?= $item->question->id ?>" type="radio" data-id="<?= $answer->id ?>" class="answer-radio" <?= $item->answer_id == $answer->id ? 'checked' : ''?> >
+                                    <input name="<?= $item->question->id ?>" type="radio" data-id="<?= $answer->id ?>"
+                                           class="answer-radio" <?= $item->answer_id == $answer->id ? 'checked' : '' ?> >
                                 </div>
                                 <div class="col-sm-10 ">
                                     <?= $answer->body ?>
@@ -72,4 +111,30 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
+</section>
+
+<input class="session" type="hidden" value="<?= Yii::$app->session->get('session_id') ?>">
+<?= $this->render('_view'); ?>
+<script>
+    //    socket = new WebSocket('ws://localhost:8080');
+    //    socket.onopen = function (e) {
+    //        setInterval(function () {
+    //            socket.send('{"sessionId":<?//=Yii::$app->session->get('session_id')?>//}')
+    //        }, 1);
+    //    };
+    //    socket.onmessage = function (e) {
+    //
+    //    };
+    //    socket.onclose = function (e) {
+    ////        alert('close sesion ');
+    //    }
+    //$.timer('.my_timer').start();
+
+
+</script>
+
+
+
+
+

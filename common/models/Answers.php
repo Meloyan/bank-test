@@ -16,7 +16,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $update_at
  *
  * @property Questions $question
- * @property QusetionAnswer[] $qusetionAnswers
+ * @property QuestionAnswer[] $QuestionAnswers
  */
 class Answers extends \yii\db\ActiveRecord
 {
@@ -83,8 +83,8 @@ class Answers extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQusetionAnswers()
+    public function getQuestionAnswers()
     {
-        return $this->hasMany(QusetionAnswer::className(), ['answer_id' => 'id']);
+        return $this->hasMany(QuestionAnswer::className(), ['answer_id' => 'id']);
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
-namespace  console\models;
+namespace console\models;
+
+use common\models\Sessions;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
@@ -8,6 +10,7 @@ use Ratchet\ConnectionInterface;
 class SocketServer implements MessageComponentInterface
 {
     protected $clients;
+
     public function __construct()
     {
         $this->clients = new \SplObjectStorage; // Для хранения технической информации об присоединившихся клиентах используется технология SplObjectStorage, встроенная в PHP
@@ -19,15 +22,24 @@ class SocketServer implements MessageComponentInterface
         echo "New connection! ({$conn->resourceId})\n";
     }
 
+    /**
+     * @param ConnectionInterface $from
+     * @param string $msg
+     * @return mixed
+     */
     public function onMessage(ConnectionInterface $from, $msg)
     {
         $data = json_decode($msg, true); //для приема сообщений в формате json
-        if (is_null($data))
-        {
+        if (is_null($data)) {
             echo "invalid data\n";
             return $from->close();
         }
-        echo $from->resourceId."\n";//id, присвоенное подключившемуся клиенту
+
+        if (Sessions::checkSessionIsClosed($data['sessionId']) == false) {
+
+            return $from->close();
+        }
+
     }
 
     public function onClose(ConnectionInterface $conn)

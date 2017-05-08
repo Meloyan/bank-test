@@ -1,0 +1,12 @@
+.right-information-bar{
+    position: fixed;
+    z-index: 9999;
+    right: 220px;
+    top: 66px;
+}
+
+.right-information-bar h1{
+    display: inline-block;
+    vertical-align: super;
+}
+

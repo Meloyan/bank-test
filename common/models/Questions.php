@@ -17,7 +17,7 @@ use yii\db\Expression;
  *
  * @property Answers[] $answers
  * @property Category $category
- * @property QusetionAnswer[] $qusetionAnswers
+ * @property QuestionAnswer[] $QuestionAnswers
  */
 class Questions extends \yii\db\ActiveRecord
 {
@@ -95,7 +95,7 @@ class Questions extends \yii\db\ActiveRecord
      */
     public function getQuestionAnswers()
     {
-        return $this->hasMany(QusetionAnswer::className(), ['question_id' => 'id']);
+        return $this->hasMany(QuestionAnswer::className(), ['question_id' => 'id']);
     }
 
     /**

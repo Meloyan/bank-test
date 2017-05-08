@@ -3,7 +3,7 @@
 namespace frontend\modules\test\controllers;
 
 use common\models\Profession;
-use common\models\QusetionAnswer;
+use common\models\QuestionAnswer;
 use common\models\Sessions;
 use common\models\UserBalanceAway;
 use Yii;
@@ -29,7 +29,7 @@ class TestingController extends Controller
             $session->newSessions($id);
             Yii::$app->session->set('session_id', $session->id);
             foreach ($questions as $question) {
-                (new QusetionAnswer())->saveQuestionAnswer($session->id, $question->id);
+                (new QuestionAnswer())->saveQuestionAnswer($session->id, $question->id);
             }
 
         }

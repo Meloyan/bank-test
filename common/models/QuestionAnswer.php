@@ -16,14 +16,14 @@ use Yii;
  * @property Answers $answer
  * @property Sessions $session
  */
-class QusetionAnswer extends \yii\db\ActiveRecord
+class QuestionAnswer extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'qusetion_answer';
+        return 'question_answer';
     }
 
     /**
@@ -88,11 +88,42 @@ class QusetionAnswer extends \yii\db\ActiveRecord
         $this->save(false);
     }
 
+    /**
+     * @param $questionId
+     * @param $answer
+     * @param $sessionId
+     */
     public function updateAnswer($questionId, $answer,$sessionId)
     {
-        $model = QusetionAnswer::findOne(['session_id' => $sessionId, 'question_id' => $questionId]);
+        $model = QuestionAnswer::findOne(['session_id' => $sessionId, 'question_id' => $questionId]);
 
         $model->answer_id = $answer;
         $model->save(false);
+    }
+
+    /**
+     * ------------------------------------
+     * Get count of  answered question count
+     * ------------------------------------
+     *
+     * @param $sessionId
+     * @return int|string
+     */
+    public static function getAnsweredQuestionCount($sessionId)
+    {
+        return self::find()->where(['session_id' => $sessionId])->andWhere(['is not','answer_id',null])->count();
+    }
+
+    /**
+     * ------------------------------------
+     * Get count of  unanswered question count
+     * ------------------------------------
+     *
+     * @param $sessionId
+     * @return int|string
+     */
+    public static function getUnAnsweredQuestionCount($sessionId)
+    {
+        return self::find()->where(['session_id' => $sessionId])->andWhere(['is','answer_id',null])->count();
     }
 }
