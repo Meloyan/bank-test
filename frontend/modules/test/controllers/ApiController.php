@@ -34,9 +34,9 @@ class ApiController extends Controller
             'answered_count' => QuestionAnswer::getAnsweredQuestionCount($sessionId),
             'unanswered_count' => QuestionAnswer::getUnAnsweredQuestionCount($sessionId),
             'rest_of_time' => [
-                'hours' => gmdate("H", Sessions::getRestOfTime($sessionId)),
-                'minutes' => gmdate("i", Sessions::getRestOfTime($sessionId)),
-                'seconds' => gmdate("s", Sessions::getRestOfTime($sessionId))
+                'hours' => gmdate("H", Sessions::getRestOfTime($sessionId) < 0 ? 0 : Sessions::getRestOfTime($sessionId)),
+                'minutes' => gmdate("i", Sessions::getRestOfTime($sessionId) < 0 ? 0 : Sessions::getRestOfTime($sessionId)),
+                'seconds' => gmdate("s", Sessions::getRestOfTime($sessionId) < 0 ? 0 : Sessions::getRestOfTime($sessionId))
             ]
         ];
     }

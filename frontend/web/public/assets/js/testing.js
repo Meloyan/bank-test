@@ -30,10 +30,6 @@ var testing = (function () {
         $(document).on('click', '.answer-radio', function () {
             sendAnswer($(this).attr('name'), $(this).attr('data-id'));
             hasAnswer($(this));
-            setTimeout(function () {
-                getData();
-            }, 250);
-
         });
     }
 
@@ -70,6 +66,8 @@ var testing = (function () {
         };
 
         app.post('/test/api/create', {data: data});
+
+
     }
 
     /**
@@ -99,12 +97,10 @@ var testing = (function () {
     function infoBody(answer, noAnswer) {
         var data = {answer: answer, noAnswer: noAnswer};
         var template = _.template($('#info-body').html(), data)(data);
-        $('.right-information-bar').html(template);
+        $('.right-information-bar').append(template);
     }
 
-    /**
-     *
-     */
+
     function getData() {
         app.post('/test/api/session-info', {sessionId: sessionId}, {
             success: function (data) {
