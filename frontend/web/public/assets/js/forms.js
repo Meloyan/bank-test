@@ -20,5 +20,4 @@ var form = {
         var params = $.extend(defaults, _params);
         elem.countdowntimer(params);
     }
-
 };

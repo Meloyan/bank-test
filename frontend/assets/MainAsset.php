@@ -24,6 +24,7 @@ class MainAsset extends AssetBundle
         'public/assets/js/testing.js',
         'public/assets/js/libraries/underscore.js',
         'public/assets/js/libraries/jquery.countdownTimer.min.js',
+        'public/assets/js/libraries/bootstrap.min.js',
 
     ];
     public $depends = [
