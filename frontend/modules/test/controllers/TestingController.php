@@ -20,7 +20,6 @@ class TestingController extends Controller
 
         if (Yii::$app->session->has('session_id')) {
             $session = Sessions::findOne(Yii::$app->session->get('session_id'));
-
         } else {
             $session = new Sessions();
             $questions = (Profession::findOne($id))->getQuestions();
@@ -35,7 +34,7 @@ class TestingController extends Controller
         }
 
         return $this->render('index', [
-            'session' => $session
+            'session' => $session,
         ]);
     }
 

@@ -1,13 +1,14 @@
 var testing = (function () {
 
 
-    var parents = null;
-    var sessionId = $('.session').val();
+    var parents, sessionId;
 
     /**
      *
      */
     function init() {
+        sessionId = $('.session').val();
+        parents = null;
         bind();
         if (sessionId) {
             getData();

@@ -139,6 +139,7 @@ class Sessions extends ActiveRecord
         $startedAt = $model->started_at;
         $sessionTime = $model->profession->professionSetting->session_time;
 
+
         return DataHelper::checkTime($startedAt, $sessionTime);
     }
 

@@ -126,4 +126,25 @@ class QuestionAnswer extends \yii\db\ActiveRecord
     {
         return self::find()->where(['session_id' => $sessionId])->andWhere(['is','answer_id',null])->count();
     }
+
+    /**
+     * @param bool $flag
+     * @return int
+     */
+    public static function getAnswerList($flag = true)
+    {
+
+        $sessionId = Yii::$app->session->get('session_id');
+        $fl_true = $flag ? 1 : 0;
+
+        $count = self::find()
+            ->select('question_answer.`answer_id`')
+            ->leftJoin('answers', 'answers.id = question_answer.answer_id')
+            ->where(['question_answer.session_id' => $sessionId])
+            ->andWhere(['answers.fl_true' => $fl_true])
+            ->count();
+
+        //
+        return  (int)$count;
+    }
 }

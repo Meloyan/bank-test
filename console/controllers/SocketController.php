@@ -5,11 +5,15 @@ namespace console\controllers;
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-use console\models\SocketServer;
+use common\components\SocketServer;
+use Yii;
 
 class SocketController extends  \yii\console\Controller
 {
-    public function actionStartSocket($port=8080)
+    /**
+     *
+     */
+    public function actionStartSocket()
     {
         $server = IoServer::factory(
             new HttpServer(
@@ -17,7 +21,7 @@ class SocketController extends  \yii\console\Controller
                     new SocketServer()
                 )
             ),
-            $port
+            Yii::$app->params['socket']['port']
         );
         $server->run();
     }

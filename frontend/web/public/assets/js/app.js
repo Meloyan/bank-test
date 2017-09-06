@@ -1,18 +1,20 @@
 var app = {
 
+    socketUrl: '',
+    socketTimer: false,
+
     /**
      *
      */
     init: function () {
-
+       
     },
 
     /**
      *
      * @param url
      * @param data
-     * @param _return
-     * @returns {*}
+     * @param success
      */
     post: function (url, data, success) {
         success = success || {};
