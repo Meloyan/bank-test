@@ -1,13 +1,16 @@
 var app = {
 
-    socketUrl: '',
+    socketUrl: '', appSessionId: '',
     socketTimer: false,
 
     /**
      *
      */
-    init: function () {
-       
+    init: function (params) {
+        params = params || {};
+        for (var k in params) {
+            this[k] = params[k];
+        }
     },
 
     /**

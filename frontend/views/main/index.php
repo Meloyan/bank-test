@@ -7,7 +7,7 @@
                 <ul class="slides-container">
 
                     <!-- slide -->
-                    <li style="background-image:url('assets/images/banners/parallax-9.jpg');">
+                    <li>
                         <div class="overlay-slider"></div>
                         <div class="hero-slider-content">
                             <div class="c-vertical">
@@ -29,7 +29,7 @@
                         </div> <!-- End hero-content -->
                     </li>
                     <!-- slide -->
-                    <li style="background-image:url('assets/images/banners/6.jpg');">
+                    <li>
                         <div class="overlay-slider"></div>
                         <div class="hero-slider-content">
                             <div class="c-vertical">
@@ -50,7 +50,7 @@
                         </div> <!-- End hero-content -->
                     </li>
                     <!-- slide -->
-                    <li style="background-image:url('assets/images/banners/hero-slide-4.jpg');">
+                    <li>
                         <div class="overlay-slider"></div>
                         <div class="hero-slider-content">
                             <div class="c-vertical">

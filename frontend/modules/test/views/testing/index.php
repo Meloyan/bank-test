@@ -59,21 +59,6 @@
 
 <?= $this->render('_view'); ?>
 
-<!--<script>-->
-<!--    socket = new WebSocket('ws://localhost:8080');-->
-<!--    socket.onopen = function (e) {-->
-<!--        setInterval(function () {-->
-<!--            socket.send('{"sessionId":--><?//=Yii::$app->session->get('session_id')?>//}')
-//        }, 1);
-//    };
-//    socket.onmessage = function (e) {
-//
-//    };
-//    socket.onclose = function (e) {
-//        $('#myModal').modal({backdrop: 'static', keyboard: false});
-//    };
-//
-<!--//</script>-->
 
 
 

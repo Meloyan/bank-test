@@ -6,7 +6,6 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 use common\components\SocketServer;
-use Yii;
 
 class SocketController extends  \yii\console\Controller
 {
@@ -21,7 +20,7 @@ class SocketController extends  \yii\console\Controller
                     new SocketServer()
                 )
             ),
-            Yii::$app->params['socket']['port']
+            8080
         );
         $server->run();
     }

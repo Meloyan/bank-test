@@ -9,15 +9,20 @@
 
                     <div class="widget footer-widget text-widget">
                         <h4>About Ement</h4>
-                        <p>Dantes remained confused and silent by this explanation of the thoughts which had unconsciously been working in his mind, or rather soul; for there are two distinct sorts of ideas. Dantes remained confused and silent by this explanation.</p>
+                        <p>Dantes remained confused and silent by this explanation of the thoughts which had
+                            unconsciously been working in his mind, or rather soul; for there are two distinct sorts of
+                            ideas. Dantes remained confused and silent by this explanation.</p>
                     </div> <!-- end footer-widget -->
 
                     <div class="widget footer-widget clearfix widget-newsletter">
                         <form id="widget-subscribe-form" method="post" class="form-inline">
-                            <p><strong>Subscribe</strong> to Our Newsletter to get Important News, Amazing Offers & Inside Scoops:</p>
+                            <p><strong>Subscribe</strong> to Our Newsletter to get Important News, Amazing Offers &
+                                Inside Scoops:</p>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                                <input type="email" aria-required="true" name="widget-subscribe-form-email" id="subscriberemail" class="form-control required email" placeholder="Enter your Email">
+                                <input type="email" aria-required="true" name="widget-subscribe-form-email"
+                                       id="subscriberemail" class="form-control required email"
+                                       placeholder="Enter your Email">
                                 <span class="input-group-btn">
                     <a id="widget-subscribe-submit-button" class="btn btn-primary">Subscribe</a>
                   </span>
@@ -56,9 +61,11 @@
                         <ul class="widget-contact-list">
                             <li><i class="fa fa-map-marker"></i>
                                 <strong>Address:</strong> 795 Folsom Ave, Suite 600
-                                <br>San Francisco, CA 94107</li>
-                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890 </li>
-                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">first.last@example.com</a>
+                                <br>San Francisco, CA 94107
+                            </li>
+                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890</li>
+                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a
+                                        href="mailto:first.last@example.com">first.last@example.com</a>
                             </li>
                             <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 22:00</strong>
                                 <br>Saturday, Sunday: <strong>Closed</strong>
@@ -110,3 +117,12 @@
 <div class="back-to-top">
     <i class="fa fa-angle-up fa-3x"></i>
 </div> <!-- end back-to-top -->
+
+<script>
+    $(document).ready(function () {
+        app.init({
+            socketUrl: '<?= Yii::$app->params["socket"]["host"] . ':' . Yii::$app->params["socket"]["port"] ?>',
+            appSessionId: '<?= Yii::$app->session->get('session_id') ?>'
+        });
+    })
+</script>

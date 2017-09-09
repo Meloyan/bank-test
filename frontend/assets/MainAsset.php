@@ -20,6 +20,7 @@ class MainAsset extends AssetBundle
     public $js = [
         'public/assets/js/category.js',
         'public/assets/js/app.js',
+        'public/assets/js/client.js',
         'public/assets/js/forms.js',
         'public/assets/js/testing.js',
         'public/assets/js/libraries/underscore.js',
@@ -30,5 +31,8 @@ class MainAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+    ];
+    public $jsOptions = [
+        'position' => \yii\web\View::POS_HEAD
     ];
 }
