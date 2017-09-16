@@ -58,6 +58,7 @@
 <input class="session" type="hidden" value="<?= Yii::$app->session->get('session_id') ?>">
 
 <?= $this->render('_view'); ?>
+<?= $this->registerJsFile('@web/public/assets/js/test.js'); ?>
 
 
 

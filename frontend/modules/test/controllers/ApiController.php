@@ -36,7 +36,7 @@ class ApiController extends Controller
             'rest_of_time' => [
                 'hours' => gmdate("H", Sessions::getRestOfTime($sessionId) < 0 ? 0 : Sessions::getRestOfTime($sessionId)),
                 'minutes' => gmdate("i", Sessions::getRestOfTime($sessionId) < 0 ? 0 : Sessions::getRestOfTime($sessionId)),
-                'seconds' => gmdate("s", Sessions::getRestOfTime($sessionId) < 0 ? 1 : Sessions::getRestOfTime($sessionId))
+                'seconds' => gmdate("s", Sessions::getRestOfTime($sessionId) < 0 ? 0 : Sessions::getRestOfTime($sessionId))
             ]
         ];
     }

@@ -122,7 +122,7 @@
     $(document).ready(function () {
         app.init({
             socketUrl: '<?= Yii::$app->params["socket"]["host"] . ':' . Yii::$app->params["socket"]["port"] ?>',
-            appSessionId: '<?= Yii::$app->session->get('session_id') ?>'
+            user: '<?= Yii::$app->user->id ?>'
         });
     })
 </script>

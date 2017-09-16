@@ -1,7 +1,6 @@
 var testing = (function () {
 
-
-    var parents, sessionId;
+    var parents, sessionId, result;
 
     /**
      *
@@ -11,7 +10,7 @@ var testing = (function () {
         parents = null;
         bind();
         if (sessionId) {
-            getData();
+            getData(true);
         }
     }
 
@@ -76,6 +75,7 @@ var testing = (function () {
     /**
      *
      * @param e
+     * @param element
      */
     function menuTab(e, element) {
         var tab = $("div.bhoechie-tab>div.bhoechie-tab-content"),
@@ -100,23 +100,42 @@ var testing = (function () {
     function infoBody(answer, noAnswer) {
         var data = {answer: answer, noAnswer: noAnswer};
         var template = _.template($('#info-body').html(), data)(data);
-        $('.right-information-bar').html(template);
+        $('.info-bar').html(template);
     }
 
 
     /**
      *
      */
-    function getData() {
+    function getData(toggle) {
         app.post('/test/api/session-info', {sessionId: sessionId}, {
             success: function (data) {
                 infoBody(data.answered_count, data.unanswered_count);
-                form.fixTimer($('#given_date'), {
-                    hours: data.rest_of_time.hours,
-                    minutes: data.rest_of_time.minutes,
-                    seconds: data.rest_of_time.seconds
-                });
+                if (toggle) {
+                    showTime(data);
+                }
             }
+        });
+    }
+
+    /**
+     *
+     * @param data
+     */
+    function showTime(data) {
+        var dateWrap = $('#given_date'),
+            timeEnd = +data.rest_of_time.hours + +data.rest_of_time.minutes + +data.rest_of_time.seconds;
+
+        if (!timeEnd) {
+
+            dateWrap.hide();
+            $('.time').show();
+            return;
+        }
+        form.fixTimer(dateWrap, {
+            hours: data.rest_of_time.hours,
+            minutes: data.rest_of_time.minutes,
+            seconds: data.rest_of_time.seconds
         });
     }
 

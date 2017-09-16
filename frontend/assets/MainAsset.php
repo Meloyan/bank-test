@@ -18,8 +18,8 @@ class MainAsset extends AssetBundle
         'public/assets/css/jquery.countdownTimer.css',
            ];
     public $js = [
-        'public/assets/js/category.js',
         'public/assets/js/app.js',
+        'public/assets/js/category.js',
         'public/assets/js/client.js',
         'public/assets/js/forms.js',
         'public/assets/js/testing.js',

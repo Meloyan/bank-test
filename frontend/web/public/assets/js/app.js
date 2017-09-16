@@ -1,6 +1,6 @@
 var app = {
 
-    socketUrl: '', appSessionId: '',
+    socketUrl: '', user: '',
     socketTimer: false,
 
     /**
@@ -11,6 +11,8 @@ var app = {
         for (var k in params) {
             this[k] = params[k];
         }
+
+        client.init();
     },
 
     /**
@@ -31,3 +33,4 @@ var app = {
         $.ajax(params);
     }
 };
+

@@ -48,6 +48,10 @@ var client = (function () {
         connectionTimer = null;
     }
 
+    function register() {
+
+    }
+
     //
     return {
         init: function () {

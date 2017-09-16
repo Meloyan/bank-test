@@ -14,6 +14,7 @@ var form = {
      */
     fixTimer: function(elem, _params) {
         _params = _params || {};
+
         var defaults = {
             size : "lg"
         };
